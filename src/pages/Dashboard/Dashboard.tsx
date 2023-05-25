@@ -63,10 +63,10 @@ const Dashboard = () => {
       <div>
 
       </div>
-      <div>
+      {/* <div>
         <button onClick={() => handleLogout()}>Logout</button>
-      </div>
-      <FooterMenu />
+      </div> */}
+      <FooterMenu activeIconName={'icon1'} />
     </div >
   )
 };
