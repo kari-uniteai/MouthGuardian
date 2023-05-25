@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     background: #F2F1FA;
-    font-family: 'Comic Sans MS';
+    font-family: 'inter';
 }
 
 .button {
@@ -20,4 +20,18 @@
     cursor: pointer; /* Change cursor to pointer on hover */
     color: white;
     background-color: #15104D;
+  }
+
+  .timeCounter {
+      display: flex;
+      justify-content: center;
+      font-size: 57px;
+    color: #15104D
+  }
+
+  .targetTime {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+  color: #667085;
   }

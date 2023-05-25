@@ -53,7 +53,14 @@ const Timer = () => {
   return (
     <div className={classes.container}>
       <div className={classes.title}>Timer</div>
-      <div className={classes.timeCounter}>{formatTime(timeElapsed)}</div>
+
+      <div className={classes.targetTime}>
+        Target {'10:00'}
+      </div>
+
+      <div className={classes.timeCounter}>
+        {formatTime(timeElapsed)}
+      </div>
       <button className={classes.button} onClick={handleToggleTimer}>
         {timerActive ? 'Stop Timer' : 'Start Timer'}
       </button>

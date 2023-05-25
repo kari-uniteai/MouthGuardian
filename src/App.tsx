@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import classes from './App.module.css';
 import Landing from './pages/Landing/Landing';
+import TimerPage from './pages/TimerPage/TimerPage';
 
 const App: React.FC = () => {
 
@@ -15,6 +16,7 @@ const App: React.FC = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/timer' element={<TimerPage />} />
       </Routes>
     </div>
   );

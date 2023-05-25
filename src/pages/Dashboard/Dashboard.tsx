@@ -53,11 +53,14 @@ const Dashboard = () => {
   };
   return (
     <div className={classes.container}>
-      <div className={classes.helloContainer}>
+      <div className={classes.innerContainer}>
         <HelloContainer
           userName={userName}
         />
         <HelloSessionContainer />
+      </div>
+      <div>
+
       </div>
       <div>
         <button onClick={() => handleLogout()}>Logout</button>
