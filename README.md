@@ -38,3 +38,20 @@ ___
 Error loading the Firebase SDK, check the console.
 ___
 
+---
+I'm using react app with typescript and firebase. I need a button to start timer and a button to stop timer. I want this in component like this:
+import React, { useState } from 'react';
+import { firebase } from '../../services/firebase.config.js';
+import classes from './Login.module.css';
+
+const Timer = () => {
+
+    return (
+        <div className={classes.container}>
+
+        </div>
+    );
+};
+
+export default Timer;
+
