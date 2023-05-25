@@ -16,4 +16,10 @@ give name for the app"
 "I want to create login and signup in firebase"
 
 # Prompts
-Give me good empty CSS  rules for website body so it covers 100% width without margins
+"I need npm install instructions for creating create react app with typescript template. I cant remember command. Project name is mouthguardian."
+
+"Great. Now I need empty app file without all additional webvitals and such."
+
+"Give me good empty CSS  rules for website body so it covers 100% width without margins"
+
+
