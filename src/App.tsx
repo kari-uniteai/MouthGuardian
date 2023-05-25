@@ -6,7 +6,7 @@ import Signup from './pages/Signup/Signup';
 import classes from './App.module.css';
 import Landing from './pages/Landing/Landing';
 import TimerPage from './pages/TimerPage/TimerPage';
-import CalendarPage from './pages/CalendarPage/CalendarPage';
+import CalendarPage from './pages/Calendar/CalendarPage';
 
 const App: React.FC = () => {
 
