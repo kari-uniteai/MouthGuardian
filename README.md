@@ -16,4 +16,7 @@ give name for the app"
 "I want to create login and signup in firebase"
 
 # Prompts
+
 Give me good empty CSS  rules for website body so it covers 100% width without margins
+
+how to deploy react app to firebase
