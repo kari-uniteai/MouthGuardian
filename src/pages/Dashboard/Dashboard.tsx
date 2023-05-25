@@ -8,6 +8,7 @@ import 'firebase/compat/database';
 import { useNavigate } from 'react-router-dom';
 import HelloSessionContainer from '../../components/HelloSessionContainer/HelloSessionContainer';
 import HelloContainer from '../../components/HelloContainer/HelloContainer';
+import CalendarComponent from '../../components/Calendar/Calendar';
 
 const Dashboard = () => {
   const [userName, setUserName] = useState('');
@@ -59,6 +60,10 @@ const Dashboard = () => {
         />
         <HelloSessionContainer />
       </div>
+      <div className={classes.calendar}>
+        <br></br><center><h1>Calendar</h1></center>
+          <center><CalendarComponent/>  </center>
+        </div>
       <div>
         <button onClick={() => handleLogout()}>Logout</button>
       </div>
