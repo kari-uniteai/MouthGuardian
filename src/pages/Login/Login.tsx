@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { firebase } from '../../services/firebase.config.js';
 import classes from './Login.module.css';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../../images/placeholderlogo.png';
+import Logo from '../../images/logo.png';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -35,6 +35,7 @@ const Login = () => {
             <div className={classes.top}>
                 <img
                     src={Logo}
+                    className={classes.logo}
                 />
             </div>
 
@@ -57,7 +58,9 @@ const Login = () => {
                     placeholder="Enter your password"
                 />
 
-                <button onClick={() => handleLogin()}>Login</button>
+                <button
+                    className={classes.button}
+                    onClick={() => handleLogin()}>Login</button>
             </div>
         </div>
     );
