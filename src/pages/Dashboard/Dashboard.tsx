@@ -17,7 +17,6 @@ const Dashboard = () => {
     const currentUser = firebase.auth().currentUser;
     console.log(currentUser);
 
-<<<<<<< Updated upstream
     if (currentUser) {
       const userId = currentUser.uid;
       console.log(userId);
@@ -65,31 +64,6 @@ const Dashboard = () => {
       </div>
     </div >
   )
-=======
-      const handleLogout = () => {
-        firebase.auth().signOut()
-          .then(() => {
-            // Logout successful
-            // Perform any additional actions after logout if needed
-            navigate('/');
-          })
-          .catch((error) => {
-            // Handle logout error
-            console.error('Error logging out:', error);
-          });
-      };
-    return (
-        <div>
-            <div>
-                Hello, {userName} 
-            </div>
-            <div>
-                <Timer></Timer>
-                <button onClick={() => handleLogout()}>Logout</button>
-            </div>
-        </div>
-    )
->>>>>>> Stashed changes
 };
 
 export default Dashboard;
