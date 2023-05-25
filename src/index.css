@@ -3,4 +3,5 @@ body {
   padding: 0;
   width: 100%;
   overflow-x: hidden; /* Optional: Hides horizontal scrollbar if content exceeds viewport */
+  background-color: #E1E0F1;
 }

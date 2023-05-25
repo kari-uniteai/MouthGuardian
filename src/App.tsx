@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login/Login';
@@ -7,6 +7,7 @@ import classes from './App.module.css';
 import Landing from './pages/Landing/Landing';
 
 const App: React.FC = () => {
+
   return (
     <div className={classes.container}>
       <Routes>
@@ -16,7 +17,6 @@ const App: React.FC = () => {
         <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
     </div>
-
   );
 };
 
