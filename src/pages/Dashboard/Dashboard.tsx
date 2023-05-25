@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/database';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Dashboard = () => {
     const [userName, setUserName] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const currentUser = firebase.auth().currentUser;
@@ -32,9 +34,27 @@ const Dashboard = () => {
             });
         }
       }, []);
+
+      const handleLogout = () => {
+        firebase.auth().signOut()
+          .then(() => {
+            // Logout successful
+            // Perform any additional actions after logout if needed
+            navigate('/login');
+          })
+          .catch((error) => {
+            // Handle logout error
+            console.error('Error logging out:', error);
+          });
+      };
     return (
         <div>
-            Hello, {userName} 
+            <div>
+                Hello, {userName} 
+            </div>
+            <div>
+                <button onClick={() => handleLogout()}>Logout</button>
+            </div>
         </div>
     )
 };
