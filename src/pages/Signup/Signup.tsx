@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
@@ -17,22 +18,48 @@ const Signup = () => {
         setPassword(e.target.value);
     };
 
-    const handleLogin = async () => {
-        try {
-            console.log("heop");
-            await firebase.auth().signInWithEmailAndPassword(email, password);
-            // Login successful, do something (e.g., redirect)
-            console.log(firebase.auth().currentUser)
-            navigate('/dashboard');
-        } catch (error) {
-            console.error('Error logging in:', error);
+    const handleSignup = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (email.trim() === '' || password.trim() === '') {
+            setError('Please enter email and password.');
+            return;
         }
+
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // User signed up successfully
+                const user = userCredential.user;
+                console.log(user);
+                navigate('/dashboard');
+            })
+            .catch((error) => {
+                // Handle signup error
+                setError(error.message);
+            });
     };
 
     return (
         <div className={classes.container}>
-            <h1>Signup sivu</h1>
-
+            <h2>Signup</h2>
+            {error && <p>{error}</p>}
+            <form onSubmit={handleSignup}>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button type="submit">Sign up</button>
+            </form>
         </div>
     );
 };

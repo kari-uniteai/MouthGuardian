@@ -41,6 +41,10 @@ const Login = () => {
                 <input type="password" value={password} onChange={handlePasswordChange} />
             </div>
             <button onClick={() => handleLogin()}>Login</button>
+            <div>
+                Are you new here? Please sign up:
+            </div>
+            <button onClick={() =>navigate('/signup')}>Sign up</button>
         </div>
     );
 };
