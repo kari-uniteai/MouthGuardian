@@ -29,11 +29,9 @@ const Signup = () => {
             const userId = user?.uid;
       
             // Save the username to the Realtime Database
-            const usersRef = ref(database, 'users');
-            const newUserRef = push(usersRef);
-            set(newUserRef, {
+            const usersRef = ref(database, `/users/${userId}`);
+            set(usersRef, {
               username: userName,
-              userid: userId,
             });
       
             console.log(user);
