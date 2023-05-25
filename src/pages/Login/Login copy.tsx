@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { firebase } from '../../services/firebase.config.js';
 import classes from './Login.module.css';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../../images/placeholderlogo.png';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -32,24 +31,19 @@ const Login = () => {
 
     return (
         <div className={classes.loginContainer}>
-            <div className={classes.top}>
-                <img
-                    src={Logo}
-                />
-
+            <div>
+                <label>Email:</label>
+                <input type="email" value={email} onChange={handleEmailChange} />
             </div>
-
-            <div className={classes.bottom}>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={handleEmailChange} />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={handlePasswordChange} />
-                </div>
-                <button onClick={() => handleLogin()}>Login</button>
+            <div>
+                <label>Password:</label>
+                <input type="password" value={password} onChange={handlePasswordChange} />
             </div>
+            <button onClick={() => handleLogin()}>Login</button>
+            <div>
+                Are you new here? Please sign up:
+            </div>
+            <button onClick={() => navigate('/signup')}>Sign up</button>
         </div>
     );
 };
