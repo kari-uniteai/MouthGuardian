@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import HelloSessionContainer from '../../components/HelloSessionContainer/HelloSessionContainer';
 import HelloContainer from '../../components/HelloContainer/HelloContainer';
 import CalendarComponent from '../../components/Calendar/Calendar';
+import FooterMenu from '../../components/Footer/FooterMenu';
 
 const Dashboard = () => {
   const [userName, setUserName] = useState('');
@@ -65,6 +66,7 @@ const Dashboard = () => {
       <div>
         <button onClick={() => handleLogout()}>Logout</button>
       </div>
+      <FooterMenu />
     </div >
   )
 };
