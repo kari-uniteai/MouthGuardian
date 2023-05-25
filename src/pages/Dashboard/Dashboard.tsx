@@ -40,7 +40,7 @@ const Dashboard = () => {
           .then(() => {
             // Logout successful
             // Perform any additional actions after logout if needed
-            navigate('/login');
+            navigate('/');
           })
           .catch((error) => {
             // Handle logout error
