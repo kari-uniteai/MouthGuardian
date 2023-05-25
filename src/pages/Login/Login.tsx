@@ -20,7 +20,6 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
-            console.log("heop");
             await firebase.auth().signInWithEmailAndPassword(email, password);
             // Login successful, do something (e.g., redirect)
             console.log(firebase.auth().currentUser)
@@ -48,7 +47,6 @@ const Login = () => {
                     onChange={handleEmailChange}
                     placeholder="Enter your email"
                 />
-
 
                 <input
                     className={classes.inputfield}

@@ -1,0 +1,63 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #F2F1FA;
+    font-family: 'inter';
+  }
+  
+.inputfield {
+    font-size: 14px;
+    padding: 14px;
+    color: #8885AC;
+    width: 100%;
+    border: 1px solid #C7C5DE;
+    border-radius: 6px;
+    box-sizing: border-box; /* Ensure the padding and width are included in the total width */
+  }
+  
+  .inputfield:not(:first-child) {
+    margin-top: 28px;
+  }
+  
+  .top {
+    background-color: white;
+  }
+  
+  .bottom {
+    background-color: #F2F1FA;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    padding-top: 48px;
+    padding-left: 27.5px;
+    padding-right: 27.5px;
+  }
+  
+  .logo {
+   
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    
+    
+  }
+  
+  .button {
+    margin: 0 auto;
+    font-size: 14px;
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 59px;
+    border-radius: 30px; /* Rounded borders */
+    border: 2px solid #15104D; /* Border color for both buttons */
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer; /* Change cursor to pointer on hover */
+    color: white;
+    background-color: #15104D;
+  }
