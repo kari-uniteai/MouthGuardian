@@ -6,36 +6,57 @@ import classes from './Timer.module.css';
 const Timer = () => {
   const [timerActive, setTimerActive] = useState(false);
   const [timeElapsed, setTimeElapsed] = useState(0);
-  const currentUser = firebase.auth().currentUser;
-  const path = `users/${currentUser?.uid}/timeElapsed`;
+  const [user, setUser] = useState({});
+  const [path, setPath] = useState('');
+  const [intervalId, setIntervalId] = useState<NodeJS.Timeout | undefined>(undefined);
 
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
-
     if (timerActive) {
-      intervalId = setInterval(() => {
+      const id = setInterval(() => {
         setTimeElapsed((prevTimeElapsed) => prevTimeElapsed + 1);
       }, 1000);
+      setIntervalId(id);
     }
 
     return () => {
-      clearInterval(intervalId);
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
     };
   }, [timerActive]);
 
-  const handleStart = () => {
-    setTimerActive(true);
+  useEffect(() => {
+    const currentUser = firebase.auth().currentUser;
+    setUser({ ...currentUser });
+    setPath(`users/${currentUser?.uid}/timeElapsed`);
+  }, []);
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(seconds).padStart(2, '0');
+
+    return `${formattedMinutes}:${formattedSeconds}`;
   };
 
-  const handleStop = () => {
-    setTimerActive(false);
+  const handleToggleTimer = () => {
+    if (timerActive) {
+      clearInterval(intervalId);
+      setTimerActive(false);
+    } else {
+      setTimerActive(true);
+    }
   };
 
   return (
     <div className={classes.container}>
-      <div>Time Elapsed: {timeElapsed} seconds</div>
-      <button onClick={handleStart}>Start Timer</button>
-      <button onClick={handleStop}>Stop Timer</button>
+      <div className={classes.title}>Timer</div>
+      <div className={classes.timeCounter}>{formatTime(timeElapsed)}</div>
+      <button className={classes.button} onClick={handleToggleTimer}>
+        {timerActive ? 'Stop Timer' : 'Start Timer'}
+      </button>
       <DataSaver data={timeElapsed} path={path} />
     </div>
   );

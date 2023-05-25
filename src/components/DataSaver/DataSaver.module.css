@@ -1,11 +1,3 @@
-.container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background: #F2F1FA;
-    font-family: 'Comic Sans MS';
-}
-
 .button {
     margin: 0 auto;
     font-size: 14px;
@@ -18,6 +10,6 @@
     border: 2px solid #15104D; /* Border color for both buttons */
     transition: background-color 0.3s, color 0.3s;
     cursor: pointer; /* Change cursor to pointer on hover */
-    color: white;
-    background-color: #15104D;
+    color: 15104D;
+    background: white;
   }

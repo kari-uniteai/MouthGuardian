@@ -1,5 +1,6 @@
 import React from 'react';
 import { getDatabase, ref, push } from 'firebase/database';
+import classes from './DataSaver.module.css'
 
 interface DataSaverProps {
     data: any;
@@ -34,7 +35,7 @@ const DataSaver: React.FC<DataSaverProps> = ({ data, path }) => {
 
 
     return (
-        <button onClick={saveData}>Save Data</button>
+        <button className={classes.button} onClick={saveData}>Save Session</button>
     );
 };
 
