@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import logoImage from '../../images/placeholderlogo.png';
+import image2 from '../../images/placeholderlogo.png';
+import classes from './Landing.module.css';
 
 const Landing = () => {
     const navigate = useNavigate();
@@ -14,14 +16,17 @@ const Landing = () => {
     };
 
     return (
-        <div>
-            <div className="logo">
+        <div className={classes.container}>
+            <div className={classes.logo}>
                 <img src={logoImage} alt="Logo" />
             </div>
-            <div className="title">Title</div>
-            <p>Introduction text</p>
-            <img src="image.jpg" alt="Image" />
-            <div className="button-row">
+            <div className={classes.title}>Mouth Guardian</div>
+            <div className={classes.description}>Puhtaat hampaat, parempi mieli!</div>
+            <img
+                src={classes.image2}
+                alt="Image2"
+            />
+            <div className={classes.buttonRow}>
                 <button onClick={handleLoginClick}>Login</button>
                 <button onClick={handleSignupClick}>Signup</button>
             </div>

@@ -36,18 +36,27 @@ const Login = () => {
                 <img
                     src={Logo}
                 />
-
             </div>
 
             <div className={classes.bottom}>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={handleEmailChange} />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={handlePasswordChange} />
-                </div>
+
+                <input
+                    className={classes.inputfield}
+                    type="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    placeholder="Enter your email"
+                />
+
+
+                <input
+                    className={classes.inputfield}
+                    type="password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    placeholder="Enter your password"
+                />
+
                 <button onClick={() => handleLogin()}>Login</button>
             </div>
         </div>
