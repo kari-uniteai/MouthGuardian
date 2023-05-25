@@ -1,3 +1,5 @@
+import TargetTime from '../../components/TargetTime/TargetTime';
+import Timer from '../../components/Timer/Timer';
 import classes from './Dashboard.module.css';
 import { useEffect, useState } from 'react';
 import firebase from 'firebase/compat/app';
