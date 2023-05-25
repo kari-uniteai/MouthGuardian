@@ -1,5 +1,3 @@
-import TargetTime from '../../components/TargetTime/TargetTime';
-import Timer from '../../components/Timer/Timer';
 import classes from './Dashboard.module.css';
 import { useEffect, useState } from 'react';
 import firebase from 'firebase/compat/app';
@@ -60,10 +58,7 @@ const Dashboard = () => {
         />
         <HelloSessionContainer />
       </div>
-      <div className={classes.calendar}>
-        <br></br><center><h1>Calendar</h1></center>
-          <center><CalendarComponent/>  </center>
-        </div>
+
       <div>
 
       </div>

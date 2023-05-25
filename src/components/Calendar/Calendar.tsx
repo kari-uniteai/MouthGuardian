@@ -5,6 +5,7 @@ import { get, orderByChild, query, ref } from 'firebase/database';
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import classes from './Calendar.module.css';
 
 interface CalendarProps {
   onDateChange?: (date: Date) => void;
@@ -27,40 +28,40 @@ const CalendarComponent: React.FC<CalendarProps> = ({ onDateChange }) => {
   };
 
   // read timeElapsed from Firebase Realtime database current user
-    const currentUser = firebase.auth().currentUser;
-    console.log(currentUser);
+  const currentUser = firebase.auth().currentUser;
+  console.log(currentUser);
 
-    // add null check
-    if (currentUser) {
+  // add null check
+  if (currentUser) {
 
-        const userId = currentUser.uid;
-        console.log("user:"+userId);
-        const databaseRef = firebase.database().ref('timeElapsed').child(userId);
-        console.log(databaseRef);
-        // read all events from Firebase Realtime database
-        databaseRef.once('value', (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                // TODO: this is not reading the rows yet
-                snapshot.forEach((childSnapshot) => {
-                    const startTime = new Date(childSnapshot.val().startTime * 1000); // Convert epoch timestamp to milliseconds
-                    const stopTime = new Date(childSnapshot.val().stopTime * 1000); // Convert epoch timestamp to milliseconds
-                    console.log("starttime:" + startTime);
-              
+    const userId = currentUser.uid;
+    console.log("user:" + userId);
+    const databaseRef = firebase.database().ref('timeElapsed').child(userId);
+    console.log(databaseRef);
+    // read all events from Firebase Realtime database
+    databaseRef.once('value', (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        // TODO: this is not reading the rows yet
+        snapshot.forEach((childSnapshot) => {
+          const startTime = new Date(childSnapshot.val().startTime * 1000); // Convert epoch timestamp to milliseconds
+          const stopTime = new Date(childSnapshot.val().stopTime * 1000); // Convert epoch timestamp to milliseconds
+          console.log("starttime:" + startTime);
 
-                    // startTime is epoch time, convert to Date
-                    // stopTime is epoch time, convert to Date
-                    // add to events array
-                    
-                    allEvents.push({ title: "x", date: startTime });
-                    
-                    //allEvents.push({ title: "x  ", date: new Date() });
-              });
-            }
+
+          // startTime is epoch time, convert to Date
+          // stopTime is epoch time, convert to Date
+          // add to events array
+
+          allEvents.push({ title: "x", date: startTime });
+
+          //allEvents.push({ title: "x  ", date: new Date() });
         });
- 
-    }
-    
+      }
+    });
+
+  }
+
   // Example of events data
   const allEvents: Event[] = [
     // create one event for  today
@@ -90,7 +91,9 @@ const CalendarComponent: React.FC<CalendarProps> = ({ onDateChange }) => {
   };
 
   return (
-    <div>
+    <div className={classes.container}>
+      <div className={classes.title}>Calendar</div>
+
       <Calendar value={date} tileContent={calendarTileContent} />
     </div>
   );
