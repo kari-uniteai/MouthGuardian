@@ -2,30 +2,23 @@ import React, { useState } from 'react';
 import { firebase } from '../../services/firebase.config.js';
 import classes from './Signup.module.css';
 import { useNavigate } from 'react-router-dom';
+import { getDatabase } from 'firebase/database';
 
 const Signup = () => {
+    const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-
+    const database = getDatabase();
     const navigate = useNavigate();
-
-    const handleEmailChange = (e: any) => {
-        setEmail(e.target.value);
-    };
-
-    const handlePasswordChange = (e: any) => {
-        setPassword(e.target.value);
-    };
 
     const handleSignup = (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (email.trim() === '' || password.trim() === '') {
-            setError('Please enter email and password.');
+        if (email.trim() === '' || password.trim() === '' || userName.trim() === '') {
+            setError('Please enter email and password and username');
             return;
         }
-
         firebase
             .auth()
             .createUserWithEmailAndPassword(email, password)
@@ -46,6 +39,12 @@ const Signup = () => {
             <h2>Signup</h2>
             {error && <p>{error}</p>}
             <form onSubmit={handleSignup}>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                />
                 <input
                     type="email"
                     placeholder="Email"
