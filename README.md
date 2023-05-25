@@ -15,7 +15,6 @@ to support the use of the device.
 give name for the app"
 ___
 "I want to create login and signup in firebase"
-<<<<<<< HEAD
 
 # Prompts
 "I need npm install instructions for creating create react app with typescript template. I cant remember command. Project name is mouthguardian."
@@ -24,7 +23,6 @@ ___
 
 "Give me good empty CSS  rules for website body so it covers 100% width without margins"
 
-=======
 ___
 Give me good empty CSS  rules for website body so it covers 100% width without margins
 ___
@@ -39,5 +37,4 @@ This project is set up to use Cloud Firestore in Datastore mode. This mode can o
 ___
 Error loading the Firebase SDK, check the console.
 ___
->>>>>>> 11d3e0995fa1097cb9733dc92c63e5ac66c86a5d
 
