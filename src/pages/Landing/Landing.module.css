@@ -1,0 +1,33 @@
+.loginContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #F2F1FA;
+    font-family: 'Comic Sans MS';
+  }
+  
+  .loginContainer h1 {
+    text-align: center;
+  }
+  
+  .loginContainer label {
+    display: block;
+  }
+  
+  .loginContainer input {
+    display: block;
+    width: 100%;
+  }
+  
+  .loginContainer button {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .loginContainer div:last-child {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+
+  
