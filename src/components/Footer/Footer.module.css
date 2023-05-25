@@ -1,0 +1,33 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 32px 24px;
+    gap: 36px; 
+    position: relative;
+    height: 80px;
+    background: #E1E0F1;
+    border-radius: 16px 16px 0px 0px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .menuIcon {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    cursor: pointer;
+    padding: 8px 16px;
+    width: 56px;
+    border-radius: 16px;
+  }
+  
+  .active {
+    background: #F2F1FA;
+  }
+
+  .menuIconImg {
+    justify-self: auto;
+  }
+  
