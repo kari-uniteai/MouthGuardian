@@ -1,6 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import { Chart, registerables } from 'chart.js';
+import { Chart, registerables, ChartOptions } from 'chart.js';
 Chart.register(...registerables);
 
 interface BarChartProps {
@@ -39,19 +39,24 @@ const BarChart: React.FC<BarChartProps> = ({ expectedValues, actualizedValues })
     labels: monthLabels,
     datasets: [
       {
-        label: 'Expected Values',
+        label: 'Your target',
         data: expectedValues,
         backgroundColor: 'rgba(199,197,222)', // color for expected values
       },
       {
-        label: 'Actualized Values',
+        label: 'Your usage',
         data: actualizedValues,
         backgroundColor: 'rgba(72,68,115)', // color for actualized values
       },
     ],
   };
 
-  const options = {
+  const options: ChartOptions<"bar"> = {
+    plugins: {
+      legend: {
+        position: 'bottom',
+      },
+    },
     scales: {
       y: {
         beginAtZero: true,
