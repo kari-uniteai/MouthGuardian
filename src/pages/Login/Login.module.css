@@ -5,6 +5,7 @@
   flex-direction: column;
   background: #F2F1FA;
   font-family: 'inter';
+  padding-bottom: 30px;
 }
 
 .inputfield {
@@ -35,6 +36,7 @@
   padding-top: 48px;
   padding-left: 27.5px;
   padding-right: 27.5px;
+  padding-bottom: 30px;
 }
 
 .logo {

@@ -38,7 +38,7 @@ const CalendarComponent: React.FC<CalendarProps> = ({ onDateChange }) => {
             const startTime = new Date(childSnapshot.val().startTime);
             console.log(startTime);
             const stopTime = new Date(childSnapshot.val().stopTime);
-            
+
             // if startime later than now, add O to calendar
             if (startTime.getTime() > Date.now()) {
               fetchedEvents.push({
@@ -50,14 +50,14 @@ const CalendarComponent: React.FC<CalendarProps> = ({ onDateChange }) => {
                 title: "X",
                 date: startTime,
               });
-            } 
+            }
           });
           setEvents(fetchedEvents);
           handleDateChange(date);
         }
       });
     }
-  }, [setUser,user]);
+  }, [setUser, user]);
 
   const handleDateChange = (newDate: Date) => {
     setDate(newDate);
@@ -83,17 +83,17 @@ const CalendarComponent: React.FC<CalendarProps> = ({ onDateChange }) => {
 
     // add null check
     if (user) {
-        const database = getDatabase();
-        const databaseRef = ref(database, path);
+      const database = getDatabase();
+      const databaseRef = ref(database, path);
 
-        let dataToSave = {
-            startTime: startTime,
-            stopTime: endTime,
-            timeElapsed: 10 * 60
-        }
-        push(databaseRef, dataToSave);
-    }   
-  };  
+      let dataToSave = {
+        startTime: startTime,
+        stopTime: endTime,
+        timeElapsed: 10 * 60
+      }
+      push(databaseRef, dataToSave);
+    }
+  };
 
 
   const getEventsForDay = (day: Date) => {
@@ -120,9 +120,11 @@ const CalendarComponent: React.FC<CalendarProps> = ({ onDateChange }) => {
   return (
     <div className={classes.container}>
       <div className={classes.title}>Calendar</div>
-      <Calendar value={date} 
-      onClickDay={handleTileClick}
-      tileContent={calendarTileContent}  />
+      <Calendar
+        className={classes.calendar}
+        value={date}
+        onClickDay={handleTileClick}
+        tileContent={calendarTileContent} />
     </div>
   );
 };
