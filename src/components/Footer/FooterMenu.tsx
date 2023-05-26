@@ -10,7 +10,7 @@ interface FooterMenuProps {
   activeIconName: string;
 }
 
-const FooterMenu: React.FC<FooterMenuProps> = ( {activeIconName} ) => {
+const FooterMenu: React.FC<FooterMenuProps> = ({ activeIconName }) => {
   const [activeIcon, setActiveIcon] = useState<string>(activeIconName); // Set the initial active icon here
   const navigate = useNavigate();
   // Handle click event for changing the active icon
@@ -40,7 +40,7 @@ const FooterMenu: React.FC<FooterMenuProps> = ( {activeIconName} ) => {
       </div>
       <div
         className={`${classes.menuIcon} ${activeIcon === 'icon4' ? classes.active : ''}`}
-       onClick={() => handleIconClick('icon4')}
+        onClick={() => navigate('/onboarding')}
       >
         <img className='menuIconImg' src={Icon4} alt="Icon 4" />
       </div>
