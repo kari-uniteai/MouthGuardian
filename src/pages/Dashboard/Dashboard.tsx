@@ -9,6 +9,7 @@ import HelloContainer from '../../components/HelloContainer/HelloContainer';
 import CalendarComponent from '../../components/Calendar/Calendar';
 import FooterMenu from '../../components/Footer/FooterMenu';
 import AverageUsage from '../../components/AverageUsage/AverageUsage';
+import BarChartContainer from '../../components/BarChartContainer/BarChartContainer';
 
 const Dashboard = () => {
     const [userName, setUserName] = useState('');
@@ -63,6 +64,10 @@ const Dashboard = () => {
             <div className={classes.innerContainer}>
 
                 <AverageUsage />
+            </div>
+            <div className={classes.innerContainer}>
+
+              <BarChartContainer />
             </div>
 
             <div>
