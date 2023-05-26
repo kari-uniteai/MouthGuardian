@@ -89,7 +89,7 @@ const CalendarComponent: React.FC<CalendarProps> = ({ onDateChange }) => {
         let dataToSave = {
             startTime: startTime,
             stopTime: endTime,
-            timeElapsed: 100 * 60
+            timeElapsed: 10 * 60
         }
         push(databaseRef, dataToSave);
     }   
