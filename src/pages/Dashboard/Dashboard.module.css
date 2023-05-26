@@ -8,8 +8,10 @@
 }
 
 .innerContainer {
-    width: 95%;
+    width: 90%;
     background-color: white;
     margin: 0 auto;
     border-radius: 8px;
+    padding-top: 5%;
+    margin-top: 15px;
 }
