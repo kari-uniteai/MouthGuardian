@@ -1,6 +1,12 @@
 # MouthGuardian
 
-## Prompts used to chatgpt:
+## AI Tools used for code generation
+
+### https://chat.openai.com/
+### https://github.com/hillis/gpt-4-chat-ui  (used with Younite-AI's API key)
+### https://github.com/features/copilot
+
+## Prompts
 
 ___
 "Our Customer is a startup with a new business idea in the field 
@@ -15,8 +21,7 @@ to support the use of the device.
 give name for the app"
 ___
 "I want to create login and signup in firebase"
-
-# Prompts
+___
 "I need npm install instructions for creating create react app with typescript template. I cant remember command. Project name is mouthguardian."
 
 "Great. Now I need empty app file without all additional webvitals and such."
@@ -173,6 +178,21 @@ const DataSaver: React.FC<DataSaverProps> = ({ data, path }) => {
 
 export default DataSaver;
 
+___
+Create Calendar.tsx component with react and typescript using some existing nice looking calendar library
+___
+// read timeElapsed from Firebase Realtime database current user
+___
+modify this so that startTime and stopTimes are taken from db:
+if (currentUser) {
+    const userId = currentUser.uid;
+    console.log(userId);
+    const databaseRef = firebase.database().ref('timeElapsed').child(userId);
+    console.log(databaseRef);
+}
+___
+fix this to refresh when rows are got from database:
 
----
+Calendar.tsx content...
+___
 
