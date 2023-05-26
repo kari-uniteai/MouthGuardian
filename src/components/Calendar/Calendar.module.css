@@ -4,4 +4,10 @@
     flex-direction: column;
     background: #F2F1FA;
     font-family: 'Comic Sans MS';
+    flex-grow: 1;
+    margin: 0 auto;
+}
+
+.title {
+    margin-bottom: 20px;
 }
