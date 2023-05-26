@@ -25,8 +25,17 @@ const HelloSessionContainer = () => {
             // Get the keys of the stored items
             const itemIds = Object.keys(timeElapsedData);
       
-            // Get the last entry
-            const lastEntryId = itemIds[itemIds.length - 1];
+            // Filter out past entries
+            const pastItemIds = itemIds.filter((itemId) => {
+              const entry = timeElapsedData[itemId];
+              return entry.stopTime < Date.now(); // Include entries where stopTime is less than the current time
+            });
+      
+            // Get the count of past entries
+            const itemCount = pastItemIds.length;
+      
+            // Get the last entry from past entries
+            const lastEntryId = pastItemIds[pastItemIds.length - 1];
             const lastEntry = timeElapsedData[lastEntryId];
       
             // Convert epoch time to a formatted date
@@ -35,9 +44,6 @@ const HelloSessionContainer = () => {
               day: 'numeric',
             });
       
-            // Get the count of stored items
-            const itemCount = itemIds.length;
-      
             // Update the state with the fetched data
             setTimeElapsed(timeElapsedData);
             setLastEntryDate(lastEntryDate);
@@ -45,6 +51,7 @@ const HelloSessionContainer = () => {
           }
         });
       }, []);
+      
       
       
       
@@ -59,7 +66,7 @@ const HelloSessionContainer = () => {
                 </div>
                 <div className={classes.sessionItem}>
                     <div className={classes.smallTitle}>Next</div>
-                    <div className={classes.value}>{'May 29'}</div>
+                    <div className={classes.value}>{'May 27'}</div>
                 </div>
                 <div className={classes.sessionItem}>
                     <div className={classes.smallTitle}>Total</div>

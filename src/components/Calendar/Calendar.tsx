@@ -1,8 +1,8 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/database';
-import { get, orderByChild, query, ref } from 'firebase/database';
-import React, { useState } from 'react';
+import { getDatabase, push, ref } from 'firebase/database';
+import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import classes from './Calendar.module.css';
@@ -19,6 +19,45 @@ interface Event {
 const CalendarComponent: React.FC<CalendarProps> = ({ onDateChange }) => {
   const [date, setDate] = useState(new Date());
   const [events, setEvents] = useState<Event[]>([]);
+  const [user, setUser] = useState({});
+  const [path, setPath] = useState('');
+
+  useEffect(() => {
+    // read timeElapsed from Firebase Realtime database current user
+    const currentUser = firebase.auth().currentUser;
+    if (currentUser) {
+      const userId = currentUser.uid;
+      const databaseRef = firebase.database().ref(`users/${userId}/timeElapsed`);
+
+      // read all events from Firebase Realtime database
+      databaseRef.once('value', (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          const fetchedEvents: Event[] = [];
+          snapshot.forEach((childSnapshot) => {
+            const startTime = new Date(childSnapshot.val().startTime);
+            console.log(startTime);
+            const stopTime = new Date(childSnapshot.val().stopTime);
+            
+            // if startime later than now, add O to calendar
+            if (startTime.getTime() > Date.now()) {
+              fetchedEvents.push({
+                title: "O",
+                date: startTime,
+              });
+            } else {
+              fetchedEvents.push({
+                title: "X",
+                date: startTime,
+              });
+            } 
+          });
+          setEvents(fetchedEvents);
+          handleDateChange(date);
+        }
+      });
+    }
+  }, [setUser,user]);
 
   const handleDateChange = (newDate: Date) => {
     setDate(newDate);
@@ -27,50 +66,38 @@ const CalendarComponent: React.FC<CalendarProps> = ({ onDateChange }) => {
     }
   };
 
-  // read timeElapsed from Firebase Realtime database current user
-  const currentUser = firebase.auth().currentUser;
-  console.log(currentUser);
+  const handleTileClick = (value: Date, event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const startTime = value.getTime();
 
-  // add null check
-  if (currentUser) {
+    const endTime = startTime + 10 * 60; // Add 10 minutes to startTime
 
-    const userId = currentUser.uid;
-    console.log("user:" + userId);
-    const databaseRef = firebase.database().ref('timeElapsed').child(userId);
-    console.log(databaseRef);
-    // read all events from Firebase Realtime database
-    databaseRef.once('value', (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        // TODO: this is not reading the rows yet
-        snapshot.forEach((childSnapshot) => {
-          const startTime = new Date(childSnapshot.val().startTime * 1000); // Convert epoch timestamp to milliseconds
-          const stopTime = new Date(childSnapshot.val().stopTime * 1000); // Convert epoch timestamp to milliseconds
-          console.log("starttime:" + startTime);
+    // Perform your desired logic with startTime and endTime
+
+    console.log("startTime:", startTime);
+    console.log("endTime:", endTime);
 
 
-          // startTime is epoch time, convert to Date
-          // stopTime is epoch time, convert to Date
-          // add to events array
+    const currentUser = firebase.auth().currentUser;
+    setUser({ ...currentUser });
+    const path = `users/${currentUser?.uid}/timeElapsed`;
 
-          allEvents.push({ title: "x", date: startTime });
+    // add null check
+    if (user) {
+        const database = getDatabase();
+        const databaseRef = ref(database, path);
 
-          //allEvents.push({ title: "x  ", date: new Date() });
-        });
-      }
-    });
+        let dataToSave = {
+            startTime: startTime,
+            stopTime: endTime,
+            timeElapsed: 100 * 60
+        }
+        push(databaseRef, dataToSave);
+    }   
+  };  
 
-  }
-
-  // Example of events data
-  const allEvents: Event[] = [
-    // create one event for  today
-    { title: 'X', date: new Date() },
-    { title: 'Event 1', date: new Date(1900, 1, 1) },
-  ];
 
   const getEventsForDay = (day: Date) => {
-    return allEvents.filter((event) => {
+    return events.filter((event) => {
       const eventDate = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate());
       return eventDate.getTime() === day.getTime();
     });
@@ -93,8 +120,9 @@ const CalendarComponent: React.FC<CalendarProps> = ({ onDateChange }) => {
   return (
     <div className={classes.container}>
       <div className={classes.title}>Calendar</div>
-
-      <Calendar value={date} tileContent={calendarTileContent} />
+      <Calendar value={date} 
+      onClickDay={handleTileClick}
+      tileContent={calendarTileContent}  />
     </div>
   );
 };
