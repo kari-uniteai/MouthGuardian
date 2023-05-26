@@ -55,3 +55,124 @@ const Timer = () => {
 
 export default Timer;
 
+result after many many iterations:
+
+import React, { useState, useEffect } from 'react';
+import DataSaver from '../DataSaver/DataSaver';
+import { firebase } from '../../services/firebase.config.js';
+import classes from './Timer.module.css';
+
+const Timer = () => {
+  const [timerActive, setTimerActive] = useState(false);
+  const [timeElapsed, setTimeElapsed] = useState(0);
+  const [user, setUser] = useState({});
+  const [path, setPath] = useState('');
+  const [intervalId, setIntervalId] = useState<NodeJS.Timeout | undefined>(undefined);
+
+  useEffect(() => {
+    if (timerActive) {
+      const id = setInterval(() => {
+        setTimeElapsed((prevTimeElapsed) => prevTimeElapsed + 1);
+      }, 1000);
+      setIntervalId(id);
+    }
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [timerActive]);
+
+  useEffect(() => {
+    const currentUser = firebase.auth().currentUser;
+    setUser({ ...currentUser });
+    setPath(`users/${currentUser?.uid}/timeElapsed`);
+  }, []);
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(seconds).padStart(2, '0');
+
+    return `${formattedMinutes}:${formattedSeconds}`;
+  };
+
+  const handleToggleTimer = () => {
+    if (timerActive) {
+      clearInterval(intervalId);
+      setTimerActive(false);
+    } else {
+      setTimerActive(true);
+    }
+  };
+
+  return (
+    <div className={classes.container}>
+      <div className={classes.title}>Timer</div>
+
+      <div className={classes.targetTime}>
+        Target {'10:00'}
+      </div>
+
+      <div className={classes.timeCounter}>
+        {formatTime(timeElapsed)}
+      </div>
+      <button className={classes.button} onClick={handleToggleTimer}>
+        {timerActive ? 'Stop Timer' : 'Start Timer'}
+      </button>
+      <DataSaver data={timeElapsed} path={path} />
+    </div>
+  );
+};
+
+export default Timer;
+
+import React from 'react';
+import { getDatabase, ref, push } from 'firebase/database';
+import classes from './DataSaver.module.css'
+
+interface DataSaverProps {
+    data: any;
+    path: string;
+}
+
+const DataSaver: React.FC<DataSaverProps> = ({ data, path }) => {
+    const saveData = () => {
+        const database = getDatabase();
+        const databaseRef = ref(database, path);
+        const timestamp = new Date().getTime();
+        let dataToSave: any = {};
+      
+        if (path.includes("targetTime")) {
+          const targetTimeInMillis = data * 60 * 1000; // Convert minutes to milliseconds
+          dataToSave = {
+            targetTime: targetTimeInMillis
+          }
+        } else {
+          dataToSave = {
+            startTime: timestamp,
+            stopTime: timestamp + data * 1000,
+            timeElapsed: data
+          };
+        }
+      
+        push(databaseRef, dataToSave);
+      };
+      
+      
+      
+
+
+    return (
+        <button className={classes.button} onClick={saveData}>Save Session</button>
+    );
+};
+
+export default DataSaver;
+
+
+---
+
