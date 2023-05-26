@@ -38,17 +38,26 @@ const CalendarComponent: React.FC<CalendarProps> = ({ onDateChange }) => {
             const startTime = new Date(childSnapshot.val().startTime);
             console.log(startTime);
             const stopTime = new Date(childSnapshot.val().stopTime);
-            fetchedEvents.push({
-              title: "X",
-              date: startTime,
-            });
+            
+            // if startime later than now, add O to calendar
+            if (startTime.getTime() > Date.now()) {
+              fetchedEvents.push({
+                title: "O",
+                date: startTime,
+              });
+            } else {
+              fetchedEvents.push({
+                title: "X",
+                date: startTime,
+              });
+            } 
           });
           setEvents(fetchedEvents);
           handleDateChange(date);
         }
       });
     }
-  }, []);
+  }, [setUser,user]);
 
   const handleDateChange = (newDate: Date) => {
     setDate(newDate);
