@@ -7,6 +7,7 @@ import classes from './App.module.css';
 import Landing from './pages/Landing/Landing';
 import TimerPage from './pages/TimerPage/TimerPage';
 import CalendarPage from './pages/Calendar/CalendarPage';
+import OnBoardingPage from './pages/OnBoardingPage/OnBoardingPage';
 
 const App: React.FC = () => {
 
@@ -19,6 +20,7 @@ const App: React.FC = () => {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/timer' element={<TimerPage />} />
         <Route path='/calendar' element={<CalendarPage />} />
+        <Route path='/onboarding' element={<OnBoardingPage />} />
       </Routes>
     </div>
   );

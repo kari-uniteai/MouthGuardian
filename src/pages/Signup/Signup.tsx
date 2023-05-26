@@ -36,7 +36,7 @@ const Signup = () => {
         });
 
         console.log(user);
-        navigate('/dashboard');
+        navigate('/onboarding');
       })
       .catch((error) => {
         // Handle signup error
