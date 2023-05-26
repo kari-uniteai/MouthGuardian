@@ -196,3 +196,51 @@ fix this to refresh when rows are got from database:
 Calendar.tsx content...
 ___
 
+
+
+
+---
+
+Sitten lisäsin alle tekstin, jossa pitäisi olla ohjaus login näkymään. Kysyin seuraavaa:
+
+Can you adjust this so that “Log in” acts as link to other page?
+<div className={classes.alreadyHaveAccount}>
+Already have an account? Log in
+</div>
+
+Sitten kysymysmerkin ja log in tekstin välissä ei ollut rakoa:
+
+there’s no space between question mark and log in text when rendered
+
+Sitten pyysin ideaa asettaa target goal valintaa napin yläpuolelle
+
+Do you have idea to some target goal selection field/roll or whatever number selection that would be above get started button? I will show it in last step.
+
+Lopputulos oli ruma, pyysin jotain kauniimpaa. TÄLLAINEN KOMENTO HERKÄSTI AKTIVOI ERI KIRJASTOJEN HAUN
+
+That time selection is quite ugly, can you provide something more beautiful and user-friendly?
+
+Chatgpt ehdotti datepickeriä ja antoi valmiin koodin, jossa tuli error. Kysyin asiasta chatgpt:ltä
+
+ERROR in src/pages/OnBoardingPage/OnBoardingPage.tsx:45:35 TS7006: Parameter ‘date’ implicitly has an ‘any’ type. 43 | }; 44 | > 45 | const handleGoalTimeChange = (date) => { | ^^^^ 46 | setGoalTime(date); 47 | }; 48 |
+
+Sitten sanoin etten halua datea, vaan ihan numeron. Chatgpt ehdotti ensin timepickeriä, joka oli hours and minutes kaltainen. Sain kuitenkin suuntaa jo siihen, mitä tarvitaan ja oli valmis runko asioille.
+
+Actually replace whole inputfield with buttons that have numbers from 1 to 7.
+
+Lopputulos oli hyvä, lähdin parantelemaan tyylejä ja halusin nappien olevan pyöreitä
+
+button needs to be circle (round corners) how to make it so?
+.sessionButton { background-color: #15104D; padding: 5px; color: white; }
+
+Napit näyttivät hyvältä, mutta ympärille jäi varjoja yms borderia:
+
+There seems to be some border in there with shadow or something like that. How to remove it?
+
+Napit oli jo ok, mutta niiden välissä ei ollut rakoa:
+
+Great, now I need to have some space between buttons.
+
+Napit toimivat kuten pitää, mutta halusin niihin vielä valintaefektin:
+
+How can I make it so that whichever goal circle is selected, it will show different color in there?
